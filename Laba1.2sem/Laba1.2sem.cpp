@@ -6,31 +6,31 @@
 
 using namespace std;
 
-// Цвета текста
+// Р¦РІРµС‚Р° С‚РµРєСЃС‚Р°
 #define RESET   "\033[0m"
 #define RED     "\033[31m"
 #define GREEN   "\033[32m"
 #define BLUE    "\033[34m"
 
-// Объявление переменных
+// РћР±СЉСЏРІР»РµРЅРёРµ РїРµСЂРµРјРµРЅРЅС‹С…
 const int MAX_STUDENTS_IN_ARRAY = 100;
 const int MAX_NUMBERS_IN_ARRAY = 100;
 const int grades_count = 8;
 int current_num_students;
 int current_num_numbers;
-string file_directory = "C:/students_list.txt";     // Формат текстового файла - ANSI !
-string file_directory_phone = "C:/phone_book.txt";  // Формат текстового файла - ANSI !
+string file_directory = "C:/students_list.txt";     // Р¤РѕСЂРјР°С‚ С‚РµРєСЃС‚РѕРІРѕРіРѕ С„Р°Р№Р»Р° - ANSI !
+string file_directory_phone = "C:/phone_book.txt";  // Р¤РѕСЂРјР°С‚ С‚РµРєСЃС‚РѕРІРѕРіРѕ С„Р°Р№Р»Р° - ANSI !
 
-// Флаги
+// Р¤Р»Р°РіРё
 bool is_need_array_refresh = true;
 
-// Структуры
+// РЎС‚СЂСѓРєС‚СѓСЂС‹
 struct Student {
-    string full_name;          // ФИО студента
-    char sex;                  // Пол (М/Ж)
-    int group;                 // Номер группы
-    int group_id;              // Номер студента в списке группы
-    int grades[grades_count];  // Оценки за последный семестр
+    string full_name;          // Р¤РРћ СЃС‚СѓРґРµРЅС‚Р°
+    char sex;                  // РџРѕР» (Рњ/Р–)
+    int group;                 // РќРѕРјРµСЂ РіСЂСѓРїРїС‹
+    int group_id;              // РќРѕРјРµСЂ СЃС‚СѓРґРµРЅС‚Р° РІ СЃРїРёСЃРєРµ РіСЂСѓРїРїС‹
+    int grades[grades_count];  // РћС†РµРЅРєРё Р·Р° РїРѕСЃР»РµРґРЅС‹Р№ СЃРµРјРµСЃС‚СЂ
 };
 
 struct Phone {
@@ -41,14 +41,14 @@ struct Phone {
     string city;
 };
 
-// Объявление массивов
+// РћР±СЉСЏРІР»РµРЅРёРµ РјР°СЃСЃРёРІРѕРІ
 struct Student students_list[MAX_STUDENTS_IN_ARRAY];
 struct Phone phone_book[MAX_NUMBERS_IN_ARRAY];
 
-//Прототипы функций
+//РџСЂРѕС‚РѕС‚РёРїС‹ С„СѓРЅРєС†РёР№
 int menu_commands(int choice);
 
-// Функции
+// Р¤СѓРЅРєС†РёРё
 void separation() {
     cout << "\n";
 }
@@ -56,7 +56,7 @@ void separation() {
 void waiting() {
     separation();
     separation();
-    cout << RED << "Нажмите Enter для продолжения..." << RESET << endl;
+    cout << RED << "РќР°Р¶РјРёС‚Рµ Enter РґР»СЏ РїСЂРѕРґРѕР»Р¶РµРЅРёСЏ..." << RESET << endl;
     cin.ignore();
     cin.get();
 }
@@ -81,7 +81,7 @@ void students_counter() {
         current_num_students = (count_str + 1) / 6;
     }
     else {
-        cout << RED << "Не удалось открыть файл! Убедитесь, что файл находится по адресу " << file_directory << RESET << endl;
+        cout << RED << "РќРµ СѓРґР°Р»РѕСЃСЊ РѕС‚РєСЂС‹С‚СЊ С„Р°Р№Р»! РЈР±РµРґРёС‚РµСЃСЊ, С‡С‚Рѕ С„Р°Р№Р» РЅР°С…РѕРґРёС‚СЃСЏ РїРѕ Р°РґСЂРµСЃСѓ " << file_directory << RESET << endl;
     }
 }
 
@@ -101,26 +101,26 @@ void students_array_filling() {
                 }
                 List.ignore(1000, '\n');
                 string temp;
-                getline(List, temp); // пропуск пустой строки
+                getline(List, temp); // РїСЂРѕРїСѓСЃРє РїСѓСЃС‚РѕР№ СЃС‚СЂРѕРєРё
             }
             List.close();
             is_need_array_refresh = false;
         }
         else {
-            cout << RED << "Не удалось открыть файл! Убедитесь, что файл находится по адресу " << file_directory << RESET << endl;
+            cout << RED << "РќРµ СѓРґР°Р»РѕСЃСЊ РѕС‚РєСЂС‹С‚СЊ С„Р°Р№Р»! РЈР±РµРґРёС‚РµСЃСЊ, С‡С‚Рѕ С„Р°Р№Р» РЅР°С…РѕРґРёС‚СЃСЏ РїРѕ Р°РґСЂРµСЃСѓ " << file_directory << RESET << endl;
         }
     }
     else {
-        cout << RED << "В файле нет данных о студентах!" << RESET << endl;
+        cout << RED << "Р’ С„Р°Р№Р»Рµ РЅРµС‚ РґР°РЅРЅС‹С… Рѕ СЃС‚СѓРґРµРЅС‚Р°С…!" << RESET << endl;
     }
 }
 
 void student_output(struct Student* student_profile) {
-    cout << GREEN << "ФИО: " << RESET << student_profile->full_name << endl;
-    cout << GREEN << "Пол: " << RESET << student_profile->sex << endl;
-    cout << GREEN << "Группа: " << RESET << student_profile->group << endl;
-    cout << GREEN << "Номер в группе: " << RESET << student_profile->group_id << endl;
-    cout << GREEN << "Оценки: " << RESET;
+    cout << GREEN << "Р¤РРћ: " << RESET << student_profile->full_name << endl;
+    cout << GREEN << "РџРѕР»: " << RESET << student_profile->sex << endl;
+    cout << GREEN << "Р“СЂСѓРїРїР°: " << RESET << student_profile->group << endl;
+    cout << GREEN << "РќРѕРјРµСЂ РІ РіСЂСѓРїРїРµ: " << RESET << student_profile->group_id << endl;
+    cout << GREEN << "РћС†РµРЅРєРё: " << RESET;
     for (int i = 0; i < grades_count; i++) {
         cout << student_profile->grades[i] << " ";
     }
@@ -138,13 +138,13 @@ void student_array_output() {
 void students_list_input() {
     students_counter();
     if (current_num_students != 0) {
-        cout << GREEN << "Данные всех " << RED << current_num_students << GREEN << " студентов:" << RESET << endl;
+        cout << GREEN << "Р”Р°РЅРЅС‹Рµ РІСЃРµС… " << RED << current_num_students << GREEN << " СЃС‚СѓРґРµРЅС‚РѕРІ:" << RESET << endl;
         separation();
         students_array_filling();
         student_array_output();
     }
     else {
-        cout << RED << "В файле нет данных о студентах!" << RESET << endl;
+        cout << RED << "Р’ С„Р°Р№Р»Рµ РЅРµС‚ РґР°РЅРЅС‹С… Рѕ СЃС‚СѓРґРµРЅС‚Р°С…!" << RESET << endl;
     }
 }
 
@@ -152,29 +152,29 @@ void make_new_student() {
     if (is_need_array_refresh) {
         students_array_filling();
     }
-    cout << BLUE << "Добавление нового студента в список." << RESET << endl;
+    cout << BLUE << "Р”РѕР±Р°РІР»РµРЅРёРµ РЅРѕРІРѕРіРѕ СЃС‚СѓРґРµРЅС‚Р° РІ СЃРїРёСЃРѕРє." << RESET << endl;
     separation();
     students_counter();
     int num = current_num_students;
 
     cin.ignore();
-    cout << GREEN << "Введите ФИО: " << RESET;
+    cout << GREEN << "Р’РІРµРґРёС‚Рµ Р¤РРћ: " << RESET;
     getline(cin, students_list[num].full_name);
     separation();
 
-    cout << GREEN << "Введите пол (М/Ж): " << RESET;
+    cout << GREEN << "Р’РІРµРґРёС‚Рµ РїРѕР» (Рњ/Р–): " << RESET;
     cin >> students_list[num].sex;
     separation();
 
-    cout << GREEN << "Введите номер группы: " << RESET;
+    cout << GREEN << "Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ РіСЂСѓРїРїС‹: " << RESET;
     cin >> students_list[num].group;
     separation();
 
-    cout << GREEN << "Введите номер студента в списке: " << RESET;
+    cout << GREEN << "Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ СЃС‚СѓРґРµРЅС‚Р° РІ СЃРїРёСЃРєРµ: " << RESET;
     cin >> students_list[num].group_id;
     separation();
 
-    cout << GREEN << "Введите 8 оценок за последний семестр: " << RESET;
+    cout << GREEN << "Р’РІРµРґРёС‚Рµ 8 РѕС†РµРЅРѕРє Р·Р° РїРѕСЃР»РµРґРЅРёР№ СЃРµРјРµСЃС‚СЂ: " << RESET;
     for (int i = 0; i < grades_count; i++) {
         cin >> students_list[num].grades[i];
     }
@@ -201,16 +201,16 @@ void make_new_student() {
             List.close();
 
             separation();
-            cout << GREEN << "Данные успешно записаны в файл!" << RESET << endl;
+            cout << GREEN << "Р”Р°РЅРЅС‹Рµ СѓСЃРїРµС€РЅРѕ Р·Р°РїРёСЃР°РЅС‹ РІ С„Р°Р№Р»!" << RESET << endl;
             is_need_array_refresh = false;
             students_counter();
         }
         else {
-            cout << RED << "Не удалось открыть файл! Убедитесь, что файл находится по адресу " << file_directory << RESET << endl;
+            cout << RED << "РќРµ СѓРґР°Р»РѕСЃСЊ РѕС‚РєСЂС‹С‚СЊ С„Р°Р№Р»! РЈР±РµРґРёС‚РµСЃСЊ, С‡С‚Рѕ С„Р°Р№Р» РЅР°С…РѕРґРёС‚СЃСЏ РїРѕ Р°РґСЂРµСЃСѓ " << file_directory << RESET << endl;
         }
     }
     else {
-        cout << RED << "Студент имеет 2 за семестр и будет отчислен. Данные не будут сохранены.";
+        cout << RED << "РЎС‚СѓРґРµРЅС‚ РёРјРµРµС‚ 2 Р·Р° СЃРµРјРµСЃС‚СЂ Рё Р±СѓРґРµС‚ РѕС‚С‡РёСЃР»РµРЅ. Р”Р°РЅРЅС‹Рµ РЅРµ Р±СѓРґСѓС‚ СЃРѕС…СЂР°РЅРµРЅС‹.";
     }
 }
 
@@ -233,12 +233,12 @@ void save_array_to_file() {
         List.close();
 
         separation();
-        cout << GREEN << "Данные успешно записаны в файл!" << RESET << endl;
+        cout << GREEN << "Р”Р°РЅРЅС‹Рµ СѓСЃРїРµС€РЅРѕ Р·Р°РїРёСЃР°РЅС‹ РІ С„Р°Р№Р»!" << RESET << endl;
         is_need_array_refresh = true;
     }
     else {
         separation();
-        cout << RED << "Не удалось открыть файл! Запустите программу с правами администратора и убедитесь, что файл находится по адресу " << file_directory << RESET << endl;
+        cout << RED << "РќРµ СѓРґР°Р»РѕСЃСЊ РѕС‚РєСЂС‹С‚СЊ С„Р°Р№Р»! Р—Р°РїСѓСЃС‚РёС‚Рµ РїСЂРѕРіСЂР°РјРјСѓ СЃ РїСЂР°РІР°РјРё Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂР° Рё СѓР±РµРґРёС‚РµСЃСЊ, С‡С‚Рѕ С„Р°Р№Р» РЅР°С…РѕРґРёС‚СЃСЏ РїРѕ Р°РґСЂРµСЃСѓ " << file_directory << RESET << endl;
     }
 }
 
@@ -246,15 +246,15 @@ void edit_student() {
     if (is_need_array_refresh) {
         students_array_filling();
     }
-    cout << BLUE << "Изменение данных студента в списке." << RESET << endl;
+    cout << BLUE << "РР·РјРµРЅРµРЅРёРµ РґР°РЅРЅС‹С… СЃС‚СѓРґРµРЅС‚Р° РІ СЃРїРёСЃРєРµ." << RESET << endl;
     separation();
     students_counter();
 
-    cout << GREEN << "Введите ФИО студента: " << RESET;
+    cout << GREEN << "Р’РІРµРґРёС‚Рµ Р¤РРћ СЃС‚СѓРґРµРЅС‚Р°: " << RESET;
     string student_name;
     cin.ignore();
     getline(cin, student_name);
-    cout << GREEN << "Введите группу студента: " << RESET;
+    cout << GREEN << "Р’РІРµРґРёС‚Рµ РіСЂСѓРїРїСѓ СЃС‚СѓРґРµРЅС‚Р°: " << RESET;
     int student_group;
     cin >> student_group;
     clear_screen();
@@ -267,29 +267,29 @@ void edit_student() {
         }
     }
     if (temp == 1) {
-        cout << GREEN << "Студент найден! Данные о студенте до изменений:" << RESET << endl;
+        cout << GREEN << "РЎС‚СѓРґРµРЅС‚ РЅР°Р№РґРµРЅ! Р”Р°РЅРЅС‹Рµ Рѕ СЃС‚СѓРґРµРЅС‚Рµ РґРѕ РёР·РјРµРЅРµРЅРёР№:" << RESET << endl;
         student_output(&students_list[edit_num]);
         separation();
-        cout << RED << "Изменение данных студента:" << RESET << endl;
+        cout << RED << "РР·РјРµРЅРµРЅРёРµ РґР°РЅРЅС‹С… СЃС‚СѓРґРµРЅС‚Р°:" << RESET << endl;
 
         cin.ignore();
-        cout << GREEN << "Введите ФИО: " << RESET;
+        cout << GREEN << "Р’РІРµРґРёС‚Рµ Р¤РРћ: " << RESET;
         getline(cin, students_list[edit_num].full_name);
         separation();
 
-        cout << GREEN << "Введите пол (М/Ж): " << RESET;
+        cout << GREEN << "Р’РІРµРґРёС‚Рµ РїРѕР» (Рњ/Р–): " << RESET;
         cin >> students_list[edit_num].sex;
         separation();
 
-        cout << GREEN << "Введите номер группы: " << RESET;
+        cout << GREEN << "Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ РіСЂСѓРїРїС‹: " << RESET;
         cin >> students_list[edit_num].group;
         separation();
 
-        cout << GREEN << "Введите номер студента в списке: " << RESET;
+        cout << GREEN << "Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ СЃС‚СѓРґРµРЅС‚Р° РІ СЃРїРёСЃРєРµ: " << RESET;
         cin >> students_list[edit_num].group_id;
         separation();
 
-        cout << GREEN << "Введите 8 оценок за последний семестр: " << RESET;
+        cout << GREEN << "Р’РІРµРґРёС‚Рµ 8 РѕС†РµРЅРѕРє Р·Р° РїРѕСЃР»РµРґРЅРёР№ СЃРµРјРµСЃС‚СЂ: " << RESET;
         for (int i = 0; i < grades_count; i++) {
             cin >> students_list[edit_num].grades[i];
         }
@@ -306,11 +306,11 @@ void edit_student() {
             save_array_to_file();
         }
         else {
-            cout << RED << "Студент имеет 2 за семестр и будет отчислен. Данные не будут сохранены.";
+            cout << RED << "РЎС‚СѓРґРµРЅС‚ РёРјРµРµС‚ 2 Р·Р° СЃРµРјРµСЃС‚СЂ Рё Р±СѓРґРµС‚ РѕС‚С‡РёСЃР»РµРЅ. Р”Р°РЅРЅС‹Рµ РЅРµ Р±СѓРґСѓС‚ СЃРѕС…СЂР°РЅРµРЅС‹.";
         }
     }
     else {
-        cout << RED << "Студент не найден в списке! Проверьте ФИО и группу." << RESET;
+        cout << RED << "РЎС‚СѓРґРµРЅС‚ РЅРµ РЅР°Р№РґРµРЅ РІ СЃРїРёСЃРєРµ! РџСЂРѕРІРµСЂСЊС‚Рµ Р¤РРћ Рё РіСЂСѓРїРїСѓ." << RESET;
     }
 }
 
@@ -318,9 +318,9 @@ void students_output_group() {
     if (is_need_array_refresh) {
         students_array_filling();
     }
-    cout << BLUE << "Вывод данных о студентах выбранной группы" << RESET << endl;
+    cout << BLUE << "Р’С‹РІРѕРґ РґР°РЅРЅС‹С… Рѕ СЃС‚СѓРґРµРЅС‚Р°С… РІС‹Р±СЂР°РЅРЅРѕР№ РіСЂСѓРїРїС‹" << RESET << endl;
     separation();
-    cout << GREEN << "Введите номер группы: " << RESET;
+    cout << GREEN << "Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ РіСЂСѓРїРїС‹: " << RESET;
     int group_choice;
     int temp = 0;
     cin >> group_choice;
@@ -333,10 +333,10 @@ void students_output_group() {
     }
     separation();
     if (temp != 0) {
-        cout << GREEN << "Успешно выведены данные " << RED << temp << GREEN << " студентов группы " << RED << group_choice << RESET;
+        cout << GREEN << "РЈСЃРїРµС€РЅРѕ РІС‹РІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ " << RED << temp << GREEN << " СЃС‚СѓРґРµРЅС‚РѕРІ РіСЂСѓРїРїС‹ " << RED << group_choice << RESET;
     }
     else {
-        cout << RED << "В списке нет данных о студентах из группы " << GREEN << group_choice << RESET;
+        cout << RED << "Р’ СЃРїРёСЃРєРµ РЅРµС‚ РґР°РЅРЅС‹С… Рѕ СЃС‚СѓРґРµРЅС‚Р°С… РёР· РіСЂСѓРїРїС‹ " << GREEN << group_choice << RESET;
     }
 }
 
@@ -354,7 +354,7 @@ void students_output_top() {
         students_array_filling();
     }
 
-    cout << BLUE << "Топ студентов по среднему баллу за семестр:" << RESET << endl;
+    cout << BLUE << "РўРѕРї СЃС‚СѓРґРµРЅС‚РѕРІ РїРѕ СЃСЂРµРґРЅРµРјСѓ Р±Р°Р»Р»Сѓ Р·Р° СЃРµРјРµСЃС‚СЂ:" << RESET << endl;
     separation();
 
     struct AverageGrades {
@@ -379,7 +379,7 @@ void students_output_top() {
 
     int top_size = 10;
     for (int i = 0; i < top_size; i++) {
-        cout << RED << right << setw(2) << i + 1 << ") " << GREEN << left << setw(35) << students_top[i].p_stud->full_name << " | " << students_top[i].p_stud->group << " | Средний балл: " << students_top[i].avg_grades << RESET << endl;
+        cout << RED << right << setw(2) << i + 1 << ") " << GREEN << left << setw(35) << students_top[i].p_stud->full_name << " | " << students_top[i].p_stud->group << " | РЎСЂРµРґРЅРёР№ Р±Р°Р»Р»: " << students_top[i].avg_grades << RESET << endl;
     }
     separation();
 }
@@ -389,20 +389,20 @@ void students_output_sex() {
         students_array_filling();
     }
 
-    cout << BLUE << "Вывод количества студентов мужского и женского пола" << RESET << endl;
+    cout << BLUE << "Р’С‹РІРѕРґ РєРѕР»РёС‡РµСЃС‚РІР° СЃС‚СѓРґРµРЅС‚РѕРІ РјСѓР¶СЃРєРѕРіРѕ Рё Р¶РµРЅСЃРєРѕРіРѕ РїРѕР»Р°" << RESET << endl;
     separation();
     int man_count = 0;
     int woman_count = 0;
     for (int i = 0; i < current_num_students; i++) {
-        if (students_list[i].sex == 'М') {
+        if (students_list[i].sex == 'Рњ') {
             man_count++;
         }
-        if (students_list[i].sex == 'Ж') {
+        if (students_list[i].sex == 'Р–') {
             woman_count++;
         }
     }
-    cout << GREEN << "Студентов мужского пола: " << RED << man_count << RESET << endl;
-    cout << GREEN << "Студентов женского пола: " << RED << woman_count << RESET << endl;
+    cout << GREEN << "РЎС‚СѓРґРµРЅС‚РѕРІ РјСѓР¶СЃРєРѕРіРѕ РїРѕР»Р°: " << RED << man_count << RESET << endl;
+    cout << GREEN << "РЎС‚СѓРґРµРЅС‚РѕРІ Р¶РµРЅСЃРєРѕРіРѕ РїРѕР»Р°: " << RED << woman_count << RESET << endl;
 
 }
 
@@ -410,20 +410,20 @@ void students_output_grades() {
     if (is_need_array_refresh) {
         students_array_filling();
     }
-    cout << BLUE << "Вывод данных о студентах по оценкам" << RESET << endl;
+    cout << BLUE << "Р’С‹РІРѕРґ РґР°РЅРЅС‹С… Рѕ СЃС‚СѓРґРµРЅС‚Р°С… РїРѕ РѕС†РµРЅРєР°Рј" << RESET << endl;
     separation();
-    cout << GREEN << "Выберите категорию: \n\n"
-        "1) Cтуденты, которые имеют оценку «удовлетворительно» (не получают стипендию)\n"
-        "2) Cтуденты, которые учатся только на «хорошо» и «отлично»\n"
-        "3) Cтуденты, которые учатся только на «отлично»\n"
-        << RED << "Выбор: " << RESET;
+    cout << GREEN << "Р’С‹Р±РµСЂРёС‚Рµ РєР°С‚РµРіРѕСЂРёСЋ: \n\n"
+        "1) CС‚СѓРґРµРЅС‚С‹, РєРѕС‚РѕСЂС‹Рµ РёРјРµСЋС‚ РѕС†РµРЅРєСѓ В«СѓРґРѕРІР»РµС‚РІРѕСЂРёС‚РµР»СЊРЅРѕВ» (РЅРµ РїРѕР»СѓС‡Р°СЋС‚ СЃС‚РёРїРµРЅРґРёСЋ)\n"
+        "2) CС‚СѓРґРµРЅС‚С‹, РєРѕС‚РѕСЂС‹Рµ СѓС‡Р°С‚СЃСЏ С‚РѕР»СЊРєРѕ РЅР° В«С…РѕСЂРѕС€РѕВ» Рё В«РѕС‚Р»РёС‡РЅРѕВ»\n"
+        "3) CС‚СѓРґРµРЅС‚С‹, РєРѕС‚РѕСЂС‹Рµ СѓС‡Р°С‚СЃСЏ С‚РѕР»СЊРєРѕ РЅР° В«РѕС‚Р»РёС‡РЅРѕВ»\n"
+        << RED << "Р’С‹Р±РѕСЂ: " << RESET;
     int grades_choice;
     cin >> grades_choice;
     int temp = 0;
     switch (grades_choice) {
     case 1: {
         clear_screen();
-        cout << BLUE << "Cтуденты, которые имеют оценку «удовлетворительно» (не получают стипендию)" << RESET << endl;
+        cout << BLUE << "CС‚СѓРґРµРЅС‚С‹, РєРѕС‚РѕСЂС‹Рµ РёРјРµСЋС‚ РѕС†РµРЅРєСѓ В«СѓРґРѕРІР»РµС‚РІРѕСЂРёС‚РµР»СЊРЅРѕВ» (РЅРµ РїРѕР»СѓС‡Р°СЋС‚ СЃС‚РёРїРµРЅРґРёСЋ)" << RESET << endl;
         separation();
         int temp = 0;
         for (int i = 0; i < current_num_students; i++) {
@@ -440,17 +440,17 @@ void students_output_grades() {
         }
         if (temp != 0) {
             separation();
-            cout << GREEN << "Под выбранную категорию подходят " << RED << temp << GREEN << " студентов" << RESET << endl;
+            cout << GREEN << "РџРѕРґ РІС‹Р±СЂР°РЅРЅСѓСЋ РєР°С‚РµРіРѕСЂРёСЋ РїРѕРґС…РѕРґСЏС‚ " << RED << temp << GREEN << " СЃС‚СѓРґРµРЅС‚РѕРІ" << RESET << endl;
         }
         else {
-            cout << RED << "В списке нет студентов, подходящих под выбранную категорию!";
+            cout << RED << "Р’ СЃРїРёСЃРєРµ РЅРµС‚ СЃС‚СѓРґРµРЅС‚РѕРІ, РїРѕРґС…РѕРґСЏС‰РёС… РїРѕРґ РІС‹Р±СЂР°РЅРЅСѓСЋ РєР°С‚РµРіРѕСЂРёСЋ!";
         }
         break;
     }
 
     case 2: {
         clear_screen();
-        cout << BLUE << "Cтуденты, которые учатся только на «хорошо» и «отлично»" << RESET << endl;
+        cout << BLUE << "CС‚СѓРґРµРЅС‚С‹, РєРѕС‚РѕСЂС‹Рµ СѓС‡Р°С‚СЃСЏ С‚РѕР»СЊРєРѕ РЅР° В«С…РѕСЂРѕС€РѕВ» Рё В«РѕС‚Р»РёС‡РЅРѕВ»" << RESET << endl;
         separation();
         int temp = 0;
         for (int i = 0; i < current_num_students; i++) {
@@ -471,17 +471,17 @@ void students_output_grades() {
         }
         if (temp != 0) {
             separation();
-            cout << GREEN << "Под выбранную категорию подходят " << RED << temp << GREEN << " студентов" << RESET << endl;
+            cout << GREEN << "РџРѕРґ РІС‹Р±СЂР°РЅРЅСѓСЋ РєР°С‚РµРіРѕСЂРёСЋ РїРѕРґС…РѕРґСЏС‚ " << RED << temp << GREEN << " СЃС‚СѓРґРµРЅС‚РѕРІ" << RESET << endl;
         }
         else {
-            cout << RED << "В списке нет студентов, подходящих под выбранную категорию!";
+            cout << RED << "Р’ СЃРїРёСЃРєРµ РЅРµС‚ СЃС‚СѓРґРµРЅС‚РѕРІ, РїРѕРґС…РѕРґСЏС‰РёС… РїРѕРґ РІС‹Р±СЂР°РЅРЅСѓСЋ РєР°С‚РµРіРѕСЂРёСЋ!";
         }
         break;
     }
 
     case 3: {
         clear_screen();
-        cout << BLUE << "Cтуденты, которые учатся только на «отлично»" << RESET << endl;
+        cout << BLUE << "CС‚СѓРґРµРЅС‚С‹, РєРѕС‚РѕСЂС‹Рµ СѓС‡Р°С‚СЃСЏ С‚РѕР»СЊРєРѕ РЅР° В«РѕС‚Р»РёС‡РЅРѕВ»" << RESET << endl;
         separation();
         int temp = 0;
         for (int i = 0; i < current_num_students; i++) {
@@ -498,17 +498,17 @@ void students_output_grades() {
         }
         if (temp != 0) {
             separation();
-            cout << GREEN << "Под выбранную категорию подходят " << RED << temp << GREEN << " студентов" << RESET << endl;
+            cout << GREEN << "РџРѕРґ РІС‹Р±СЂР°РЅРЅСѓСЋ РєР°С‚РµРіРѕСЂРёСЋ РїРѕРґС…РѕРґСЏС‚ " << RED << temp << GREEN << " СЃС‚СѓРґРµРЅС‚РѕРІ" << RESET << endl;
         }
         else {
-            cout << RED << "В списке нет студентов, подходящих под выбранную категорию!";
+            cout << RED << "Р’ СЃРїРёСЃРєРµ РЅРµС‚ СЃС‚СѓРґРµРЅС‚РѕРІ, РїРѕРґС…РѕРґСЏС‰РёС… РїРѕРґ РІС‹Р±СЂР°РЅРЅСѓСЋ РєР°С‚РµРіРѕСЂРёСЋ!";
         }
         break;
     }
 
     default:
         separation();
-        cout << RED << "Ошибка! Введите номер категории от 1 до 3!\n" << RESET << endl;
+        cout << RED << "РћС€РёР±РєР°! Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ РєР°С‚РµРіРѕСЂРёРё РѕС‚ 1 РґРѕ 3!\n" << RESET << endl;
     }
 }
 
@@ -516,9 +516,9 @@ void students_output_group_id() {
     if (is_need_array_refresh) {
         students_array_filling();
     }
-    cout << BLUE << "Вывод данных о студентах с нужным номером в списке" << RESET << endl;
+    cout << BLUE << "Р’С‹РІРѕРґ РґР°РЅРЅС‹С… Рѕ СЃС‚СѓРґРµРЅС‚Р°С… СЃ РЅСѓР¶РЅС‹Рј РЅРѕРјРµСЂРѕРј РІ СЃРїРёСЃРєРµ" << RESET << endl;
     separation();
-    cout << GREEN << "Введите номер cтудента(-ов) в списке группы: " << RESET;
+    cout << GREEN << "Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ cС‚СѓРґРµРЅС‚Р°(-РѕРІ) РІ СЃРїРёСЃРєРµ РіСЂСѓРїРїС‹: " << RESET;
     int group_id_choice;
     int temp = 0;
     cin >> group_id_choice;
@@ -531,19 +531,19 @@ void students_output_group_id() {
     }
     separation();
     if (temp != 0) {
-        cout << GREEN << "Успешно выведены данные " << RED << temp << GREEN << " студентов с номером " << RED << group_id_choice << RESET;
+        cout << GREEN << "РЈСЃРїРµС€РЅРѕ РІС‹РІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ " << RED << temp << GREEN << " СЃС‚СѓРґРµРЅС‚РѕРІ СЃ РЅРѕРјРµСЂРѕРј " << RED << group_id_choice << RESET;
     }
     else {
-        cout << RED << "В списке нет данных студентом с номером " << GREEN << group_id_choice << RESET;
+        cout << RED << "Р’ СЃРїРёСЃРєРµ РЅРµС‚ РґР°РЅРЅС‹С… СЃС‚СѓРґРµРЅС‚РѕРј СЃ РЅРѕРјРµСЂРѕРј " << GREEN << group_id_choice << RESET;
     }
 }
 
 void phone_output(struct Phone* phone_profile) {
-    cout << GREEN << "ФИО: " << RESET << phone_profile->full_name << endl;
-    cout << GREEN << "Номер: " << RESET << phone_profile->phone_num << endl;
-    cout << GREEN << "Тип телефона: " << RESET << phone_profile->phone_type << endl;
-    cout << GREEN << "Оператор: " << RESET << phone_profile->phone_operator << endl;
-    cout << GREEN << "Город: " << RESET << phone_profile->city << endl;
+    cout << GREEN << "Р¤РРћ: " << RESET << phone_profile->full_name << endl;
+    cout << GREEN << "РќРѕРјРµСЂ: " << RESET << phone_profile->phone_num << endl;
+    cout << GREEN << "РўРёРї С‚РµР»РµС„РѕРЅР°: " << RESET << phone_profile->phone_type << endl;
+    cout << GREEN << "РћРїРµСЂР°С‚РѕСЂ: " << RESET << phone_profile->phone_operator << endl;
+    cout << GREEN << "Р“РѕСЂРѕРґ: " << RESET << phone_profile->city << endl;
     separation();
 }
 
@@ -570,7 +570,7 @@ void numbers_counter() {
         current_num_numbers = (count_str + 1) / 6;
     }
     else {
-        cout << RED << "Не удалось открыть файл! Убедитесь, что файл находится по адресу " << file_directory_phone << RESET << endl;
+        cout << RED << "РќРµ СѓРґР°Р»РѕСЃСЊ РѕС‚РєСЂС‹С‚СЊ С„Р°Р№Р»! РЈР±РµРґРёС‚РµСЃСЊ, С‡С‚Рѕ С„Р°Р№Р» РЅР°С…РѕРґРёС‚СЃСЏ РїРѕ Р°РґСЂРµСЃСѓ " << file_directory_phone << RESET << endl;
     }
 }
 
@@ -587,37 +587,37 @@ void phone_array_filling() {
                 getline(List, phone_book[i].phone_operator);
                 getline(List, phone_book[i].city);
                 string temp;
-                getline(List, temp); // пропуск пустой строки
+                getline(List, temp); // РїСЂРѕРїСѓСЃРє РїСѓСЃС‚РѕР№ СЃС‚СЂРѕРєРё
             }
             List.close();
         }
         else {
-            cout << RED << "Не удалось открыть файл! Убедитесь, что файл находится по адресу " << file_directory_phone << RESET << endl;
+            cout << RED << "РќРµ СѓРґР°Р»РѕСЃСЊ РѕС‚РєСЂС‹С‚СЊ С„Р°Р№Р»! РЈР±РµРґРёС‚РµСЃСЊ, С‡С‚Рѕ С„Р°Р№Р» РЅР°С…РѕРґРёС‚СЃСЏ РїРѕ Р°РґСЂРµСЃСѓ " << file_directory_phone << RESET << endl;
         }
     }
     else {
-        cout << RED << "В файле нет данных!" << RESET << endl;
+        cout << RED << "Р’ С„Р°Р№Р»Рµ РЅРµС‚ РґР°РЅРЅС‹С…!" << RESET << endl;
     }
 }
 
 void phone_book_menu() {
     phone_array_filling();
-    cout << BLUE << "Телефонный справочник" << RESET << endl;
+    cout << BLUE << "РўРµР»РµС„РѕРЅРЅС‹Р№ СЃРїСЂР°РІРѕС‡РЅРёРє" << RESET << endl;
     separation();
-    cout << GREEN << "Выберите операцию: \n\n"
-        "1) Вывести всех абонентов указанного оператора\n"
-        "2) Вывести список контактов для смс-рассылки\n"
-        "3) Найти человека по номеру\n"
-        << RED << "Выбор: " << RESET;
+    cout << GREEN << "Р’С‹Р±РµСЂРёС‚Рµ РѕРїРµСЂР°С†РёСЋ: \n\n"
+        "1) Р’С‹РІРµСЃС‚Рё РІСЃРµС… Р°Р±РѕРЅРµРЅС‚РѕРІ СѓРєР°Р·Р°РЅРЅРѕРіРѕ РѕРїРµСЂР°С‚РѕСЂР°\n"
+        "2) Р’С‹РІРµСЃС‚Рё СЃРїРёСЃРѕРє РєРѕРЅС‚Р°РєС‚РѕРІ РґР»СЏ СЃРјСЃ-СЂР°СЃСЃС‹Р»РєРё\n"
+        "3) РќР°Р№С‚Рё С‡РµР»РѕРІРµРєР° РїРѕ РЅРѕРјРµСЂСѓ\n"
+        << RED << "Р’С‹Р±РѕСЂ: " << RESET;
     int phone_choice;
     cin >> phone_choice;
     clear_screen();
     switch (phone_choice) {
     case 1: {
-        cout << BLUE << "Все абоненты указанного оператора" << RESET << endl;
+        cout << BLUE << "Р’СЃРµ Р°Р±РѕРЅРµРЅС‚С‹ СѓРєР°Р·Р°РЅРЅРѕРіРѕ РѕРїРµСЂР°С‚РѕСЂР°" << RESET << endl;
         separation();
-        cout << GREEN << "Сейчас в списке следующие операторы: " << RESET << "МТС, Ростелеком, МГТС, МегаФон, Билайн, Дом.ру, Tele2, Башинформсвязь, Таттелеком, Yota, Интерсвязь" << endl;
-        cout << GREEN << "Введите название оператора: " << RESET;
+        cout << GREEN << "РЎРµР№С‡Р°СЃ РІ СЃРїРёСЃРєРµ СЃР»РµРґСѓСЋС‰РёРµ РѕРїРµСЂР°С‚РѕСЂС‹: " << RESET << "РњРўРЎ, Р РѕСЃС‚РµР»РµРєРѕРј, РњР“РўРЎ, РњРµРіР°Р¤РѕРЅ, Р‘РёР»Р°Р№РЅ, Р”РѕРј.СЂСѓ, Tele2, Р‘Р°С€РёРЅС„РѕСЂРјСЃРІСЏР·СЊ, РўР°С‚С‚РµР»РµРєРѕРј, Yota, РРЅС‚РµСЂСЃРІСЏР·СЊ" << endl;
+        cout << GREEN << "Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РѕРїРµСЂР°С‚РѕСЂР°: " << RESET;
         string operator_search;
         cin >> operator_search;
         separation();
@@ -629,37 +629,37 @@ void phone_book_menu() {
             }
         }
         if (temp != 0) {
-            cout << GREEN << "Успешный вывод!" << RESET;
+            cout << GREEN << "РЈСЃРїРµС€РЅС‹Р№ РІС‹РІРѕРґ!" << RESET;
         }
         else {
-            cout << RED << "Не удалось найти абонентов с заданным оператором или название оператора введено неверно!" << RESET;
+            cout << RED << "РќРµ СѓРґР°Р»РѕСЃСЊ РЅР°Р№С‚Рё Р°Р±РѕРЅРµРЅС‚РѕРІ СЃ Р·Р°РґР°РЅРЅС‹Рј РѕРїРµСЂР°С‚РѕСЂРѕРј РёР»Рё РЅР°Р·РІР°РЅРёРµ РѕРїРµСЂР°С‚РѕСЂР° РІРІРµРґРµРЅРѕ РЅРµРІРµСЂРЅРѕ!" << RESET;
         }
         break;
     }
 
     case 2: {
-        cout << BLUE << "Список контактов для смс-рассылки:" << RESET << endl;
+        cout << BLUE << "РЎРїРёСЃРѕРє РєРѕРЅС‚Р°РєС‚РѕРІ РґР»СЏ СЃРјСЃ-СЂР°СЃСЃС‹Р»РєРё:" << RESET << endl;
         separation();
         int temp = 0;
         for (int i = 0; i < current_num_numbers; i++) {
-            if (phone_book[i].phone_type == "мобильный") {
+            if (phone_book[i].phone_type == "РјРѕР±РёР»СЊРЅС‹Р№") {
                 phone_output(&phone_book[i]);
                 temp++;
             }
         }
         if (temp != 0) {
-            cout << GREEN << "Список контактов для смс-рассылки успешно выведен!" << RESET;
+            cout << GREEN << "РЎРїРёСЃРѕРє РєРѕРЅС‚Р°РєС‚РѕРІ РґР»СЏ СЃРјСЃ-СЂР°СЃСЃС‹Р»РєРё СѓСЃРїРµС€РЅРѕ РІС‹РІРµРґРµРЅ!" << RESET;
         }
         else {
-            cout << RED << "В списке нет подходящий номеров для смс-рассылки!" << RESET;
+            cout << RED << "Р’ СЃРїРёСЃРєРµ РЅРµС‚ РїРѕРґС…РѕРґСЏС‰РёР№ РЅРѕРјРµСЂРѕРІ РґР»СЏ СЃРјСЃ-СЂР°СЃСЃС‹Р»РєРё!" << RESET;
         }
         break;
     }
 
     case 3: {
-        cout << BLUE << "Найти человека по номеру" << RESET << endl;
+        cout << BLUE << "РќР°Р№С‚Рё С‡РµР»РѕРІРµРєР° РїРѕ РЅРѕРјРµСЂСѓ" << RESET << endl;
         separation();
-        cout << GREEN << "Введите номер телефона (без +): " << RESET;
+        cout << GREEN << "Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ С‚РµР»РµС„РѕРЅР° (Р±РµР· +): " << RESET;
         string num_search;
         cin >> num_search;
         separation();
@@ -672,10 +672,10 @@ void phone_book_menu() {
             }
         }
         if (temp == 1) {
-            cout << GREEN << "Человек успешно найден!" << RESET;
+            cout << GREEN << "Р§РµР»РѕРІРµРє СѓСЃРїРµС€РЅРѕ РЅР°Р№РґРµРЅ!" << RESET;
         }
         else {
-            cout << RED << "Человека с таким номером нет в списке!" << RESET;
+            cout << RED << "Р§РµР»РѕРІРµРєР° СЃ С‚Р°РєРёРј РЅРѕРјРµСЂРѕРј РЅРµС‚ РІ СЃРїРёСЃРєРµ!" << RESET;
         }
         break;
     }
@@ -683,7 +683,7 @@ void phone_book_menu() {
 }
 
 void command_choice() {
-    cout << RED << "Введите номер команды: " << RESET;
+    cout << RED << "Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ РєРѕРјР°РЅРґС‹: " << RESET;
     int user_choice;
     cin >> user_choice;
     separation();
@@ -694,7 +694,7 @@ int menu_commands(int choice) {
     switch (choice) {
     case 0:
         students_counter();
-        cout << GREEN << "Сейчас в списке данные о " << RED << current_num_students << GREEN << " студентах" << RESET << endl;
+        cout << GREEN << "РЎРµР№С‡Р°СЃ РІ СЃРїРёСЃРєРµ РґР°РЅРЅС‹Рµ Рѕ " << RED << current_num_students << GREEN << " СЃС‚СѓРґРµРЅС‚Р°С…" << RESET << endl;
         waiting();
         return 0;
         break;
@@ -754,32 +754,32 @@ int menu_commands(int choice) {
         return 0;
         break;
     default:
-        cout << RED << "Ошибка! Введите номер команды от 1 до 7\n" << RESET << endl;
+        cout << RED << "РћС€РёР±РєР°! Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ РєРѕРјР°РЅРґС‹ РѕС‚ 1 РґРѕ 7\n" << RESET << endl;
         break;
     }
 }
 
 void lab_page() {
     cout << "|=========================================================|" << endl;
-    cout << "|                  " << BLUE << "Лабораторная работа 1" << RESET << "                  |" << endl;
+    cout << "|                  " << BLUE << "Р›Р°Р±РѕСЂР°С‚РѕСЂРЅР°СЏ СЂР°Р±РѕС‚Р° 1" << RESET << "                  |" << endl;
     cout << "|=========================================================|" << endl;
-    cout << "| " << GREEN << "1) Создать новую запись о студенте" << RESET << "                      |" << endl;
-    cout << "| " << GREEN << "2) Внести изменения в запись о студенте" << RESET << "                 |" << endl;
-    cout << "| " << GREEN << "3) Вывод всех данных о студентах" << RESET << "                        |" << endl;
-    cout << "| " << GREEN << "4) Вывод данных о студентах выбранной группы" << RESET << "            |" << endl;
-    cout << "| " << GREEN << "5) Вывод топа самых успешных студентов" << RESET << "                  |" << endl;
-    cout << "| " << GREEN << "6) Вывод количества студентов мужского и женского пола" << RESET << "  |" << endl;
-    cout << "| " << GREEN << "7) Вывод данных о студентах по оценкам" << RESET << "                  |" << endl;
-    cout << "| " << GREEN << "8) Вывод данных о студентах с нужным номером в списке" << RESET << "   |" << endl;
-    cout << "| " << GREEN << "9) Телефонный справочник (ИДЗ)" << RESET << "                          |" << endl;
+    cout << "| " << GREEN << "1) РЎРѕР·РґР°С‚СЊ РЅРѕРІСѓСЋ Р·Р°РїРёСЃСЊ Рѕ СЃС‚СѓРґРµРЅС‚Рµ" << RESET << "                      |" << endl;
+    cout << "| " << GREEN << "2) Р’РЅРµСЃС‚Рё РёР·РјРµРЅРµРЅРёСЏ РІ Р·Р°РїРёСЃСЊ Рѕ СЃС‚СѓРґРµРЅС‚Рµ" << RESET << "                 |" << endl;
+    cout << "| " << GREEN << "3) Р’С‹РІРѕРґ РІСЃРµС… РґР°РЅРЅС‹С… Рѕ СЃС‚СѓРґРµРЅС‚Р°С…" << RESET << "                        |" << endl;
+    cout << "| " << GREEN << "4) Р’С‹РІРѕРґ РґР°РЅРЅС‹С… Рѕ СЃС‚СѓРґРµРЅС‚Р°С… РІС‹Р±СЂР°РЅРЅРѕР№ РіСЂСѓРїРїС‹" << RESET << "            |" << endl;
+    cout << "| " << GREEN << "5) Р’С‹РІРѕРґ С‚РѕРїР° СЃР°РјС‹С… СѓСЃРїРµС€РЅС‹С… СЃС‚СѓРґРµРЅС‚РѕРІ" << RESET << "                  |" << endl;
+    cout << "| " << GREEN << "6) Р’С‹РІРѕРґ РєРѕР»РёС‡РµСЃС‚РІР° СЃС‚СѓРґРµРЅС‚РѕРІ РјСѓР¶СЃРєРѕРіРѕ Рё Р¶РµРЅСЃРєРѕРіРѕ РїРѕР»Р°" << RESET << "  |" << endl;
+    cout << "| " << GREEN << "7) Р’С‹РІРѕРґ РґР°РЅРЅС‹С… Рѕ СЃС‚СѓРґРµРЅС‚Р°С… РїРѕ РѕС†РµРЅРєР°Рј" << RESET << "                  |" << endl;
+    cout << "| " << GREEN << "8) Р’С‹РІРѕРґ РґР°РЅРЅС‹С… Рѕ СЃС‚СѓРґРµРЅС‚Р°С… СЃ РЅСѓР¶РЅС‹Рј РЅРѕРјРµСЂРѕРј РІ СЃРїРёСЃРєРµ" << RESET << "   |" << endl;
+    cout << "| " << GREEN << "9) РўРµР»РµС„РѕРЅРЅС‹Р№ СЃРїСЂР°РІРѕС‡РЅРёРє (РР”Р—)" << RESET << "                          |" << endl;
     cout << "|                                                         |" << endl;
-    cout << "| " << RED << "0) Вывести текущее количество студентов в файле" << RESET << "         |" << endl;
+    cout << "| " << RED << "0) Р’С‹РІРµСЃС‚Рё С‚РµРєСѓС‰РµРµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СѓРґРµРЅС‚РѕРІ РІ С„Р°Р№Р»Рµ" << RESET << "         |" << endl;
     cout << "|=========================================================|" << endl;
-    cout << "|                  " << BLUE << "Лабораторная работа 1" << RESET << "                  |" << endl;
+    cout << "|                  " << BLUE << "Р›Р°Р±РѕСЂР°С‚РѕСЂРЅР°СЏ СЂР°Р±РѕС‚Р° 1" << RESET << "                  |" << endl;
     cout << "|=========================================================|" << endl;
     cout << endl;
 }
-// Главная функция
+// Р“Р»Р°РІРЅР°СЏ С„СѓРЅРєС†РёСЏ
 int main() {
     system("chcp 1251 > nul");
     setlocale(LC_ALL, "Russian");
